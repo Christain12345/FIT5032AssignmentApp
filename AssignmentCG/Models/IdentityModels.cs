@@ -29,5 +29,7 @@ namespace AssignmentCG.Models
         {
             return new ApplicationDbContext();
         }
+
+        public DbSet<AvailableTime> AvailableTimes { get; set; }
     }
 }
