@@ -170,8 +170,10 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AvailableTimesController.cs" />
+    <Compile Include="Controllers\ConsultationsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ReviewsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,11 +185,17 @@
     <Compile Include="Migrations\202209111351129_AvailableTimeModel.designer.cs">
       <DependentUpon>202209111351129_AvailableTimeModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209121155156_ReviewsCosultationsModel.cs" />
+    <Compile Include="Migrations\202209121155156_ReviewsCosultationsModel.designer.cs">
+      <DependentUpon>202209121155156_ReviewsCosultationsModel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AvailableTime.cs" />
+    <Compile Include="Models\Consultations.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Reviews.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -253,6 +261,16 @@
     <Content Include="Views\AvailableTimes\Details.cshtml" />
     <Content Include="Views\AvailableTimes\Edit.cshtml" />
     <Content Include="Views\AvailableTimes\Index.cshtml" />
+    <Content Include="Views\Reviews\Create.cshtml" />
+    <Content Include="Views\Reviews\Delete.cshtml" />
+    <Content Include="Views\Reviews\Details.cshtml" />
+    <Content Include="Views\Reviews\Edit.cshtml" />
+    <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Consultations\Create.cshtml" />
+    <Content Include="Views\Consultations\Delete.cshtml" />
+    <Content Include="Views\Consultations\Details.cshtml" />
+    <Content Include="Views\Consultations\Edit.cshtml" />
+    <Content Include="Views\Consultations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -276,6 +294,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209111351129_AvailableTimeModel.resx">
       <DependentUpon>202209111351129_AvailableTimeModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209121155156_ReviewsCosultationsModel.resx">
+      <DependentUpon>202209121155156_ReviewsCosultationsModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
