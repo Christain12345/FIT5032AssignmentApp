@@ -189,10 +189,22 @@
     <Compile Include="Migrations\202209121155156_ReviewsCosultationsModel.designer.cs">
       <DependentUpon>202209121155156_ReviewsCosultationsModel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202209141320425_consultpatient.cs" />
+    <Compile Include="Migrations\202209141320425_consultpatient.designer.cs">
+      <DependentUpon>202209141320425_consultpatient.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202209141344570_ConsultationModelUpdate.cs" />
+    <Compile Include="Migrations\202209141344570_ConsultationModelUpdate.designer.cs">
+      <DependentUpon>202209141344570_ConsultationModelUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202209141347599_ReviewModelUpdate.cs" />
+    <Compile Include="Migrations\202209141347599_ReviewModelUpdate.designer.cs">
+      <DependentUpon>202209141347599_ReviewModelUpdate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AvailableTime.cs" />
-    <Compile Include="Models\Consultations.cs" />
+    <Compile Include="Models\Consultation.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Reviews.cs" />
@@ -266,11 +278,11 @@
     <Content Include="Views\Reviews\Details.cshtml" />
     <Content Include="Views\Reviews\Edit.cshtml" />
     <Content Include="Views\Reviews\Index.cshtml" />
+    <Content Include="Views\Consultations\Index.cshtml" />
     <Content Include="Views\Consultations\Create.cshtml" />
+    <Content Include="Views\Consultations\Edit.cshtml" />
     <Content Include="Views\Consultations\Delete.cshtml" />
     <Content Include="Views\Consultations\Details.cshtml" />
-    <Content Include="Views\Consultations\Edit.cshtml" />
-    <Content Include="Views\Consultations\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -297,6 +309,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202209121155156_ReviewsCosultationsModel.resx">
       <DependentUpon>202209121155156_ReviewsCosultationsModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209141320425_consultpatient.resx">
+      <DependentUpon>202209141320425_consultpatient.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209141344570_ConsultationModelUpdate.resx">
+      <DependentUpon>202209141344570_ConsultationModelUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202209141347599_ReviewModelUpdate.resx">
+      <DependentUpon>202209141347599_ReviewModelUpdate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

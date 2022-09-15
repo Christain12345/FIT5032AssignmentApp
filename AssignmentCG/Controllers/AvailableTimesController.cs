@@ -15,12 +15,14 @@ namespace AssignmentCG.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: AvailableTimes
+        [AllowAnonymous]
         public ActionResult Index()
         {
             return View(db.AvailableTimes.ToList());
         }
 
         // GET: AvailableTimes/Details/5
+        [AllowAnonymous]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -38,7 +40,10 @@ namespace AssignmentCG.Controllers
         // GET: AvailableTimes/Create
         public ActionResult Create()
         {
-            return View();
+            if (User.IsInRole("General Practitioner") || User.IsInRole("Admin"))
+            { return View(); }
+            else
+            { return HttpNotFound(); }
         }
 
         // POST: AvailableTimes/Create
@@ -46,6 +51,8 @@ namespace AssignmentCG.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "General Practitioner")]
         public ActionResult Create([Bind(Include = "Id,StartTime,EndTime")] AvailableTime availableTime)
         {
             if (ModelState.IsValid)

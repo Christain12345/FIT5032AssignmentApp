@@ -13,12 +13,6 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.ConsultationId)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.GPId)
-        </th>
-        <th>
             @Html.DisplayNameFor(model => model.Rate)
         </th>
         <th>
@@ -29,12 +23,6 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.ConsultationId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.GPId)
-        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Rate)
         </td>

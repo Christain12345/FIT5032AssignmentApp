@@ -9,6 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using AssignmentCG.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace AssignmentCG.Controllers
 {
@@ -155,6 +156,10 @@ namespace AssignmentCG.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+                    //var role = new IdentityRole("Admin");
+                    //var roleresult = roleManager.Create(role);
+                    await UserManager.AddToRoleAsync(user.Id, "Patient");
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
                     
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771

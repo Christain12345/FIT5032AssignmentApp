@@ -6,13 +6,13 @@ using System.Web;
 
 namespace AssignmentCG.Models
 {
-    public class Consultations
+    public class Consultation
     {
         public int Id { get; set; }
         [Required]
-        public AvailableTime AvailableTimeId { get; set; }
-        [Required]
-        public int PatientId { get; set; }
+        public AvailableTime AvailableTime { get; set; }
+      
+        public ApplicationUser Patient { get; set; }
 
     }
 }

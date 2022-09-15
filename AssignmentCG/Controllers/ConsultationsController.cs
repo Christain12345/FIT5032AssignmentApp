@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using AssignmentCG.Models;
+using Microsoft.AspNet.Identity;
 
 namespace AssignmentCG.Controllers
 {
@@ -15,9 +16,18 @@ namespace AssignmentCG.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Consultations
+        [Authorize]
         public ActionResult Index()
         {
-            return View(db.Consultations.ToList());
+            if (User.IsInRole("Admin"))
+            { return View(db.Consultations.ToList()); }
+            else if (User.IsInRole("General Practitioner"))
+            { return View(db.Consultations.Where(c => c.AvailableTime.GP.Id == User.Identity.GetUserId()).ToList()); }
+            else if (User.IsInRole("Patient"))
+            { return View(db.Consultations.Where(c => c.Patient.Id == User.Identity.GetUserId()).ToList()); }
+            else
+            { return View(new List<Consultation>()); }
+            
         }
 
         // GET: Consultations/Details/5
@@ -27,12 +37,14 @@ namespace AssignmentCG.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consultations consultations = db.Consultations.Find(id);
-            if (consultations == null)
+            Consultation consultation = db.Consultations.Find(id);
+            if (consultation == null)
             {
                 return HttpNotFound();
             }
-            return View(consultations);
+            //if (consultation.Patient. != User.Identity.GetUserId<int>())
+            //{ return HttpNotFound(); }
+            return View(consultation);
         }
 
         // GET: Consultations/Create
@@ -46,16 +58,16 @@ namespace AssignmentCG.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,PatientId")] Consultations consultations)
+        public ActionResult Create([Bind(Include = "Id,PatientId")] Consultation consultation)
         {
             if (ModelState.IsValid)
             {
-                db.Consultations.Add(consultations);
+                db.Consultations.Add(consultation);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(consultations);
+            return View(consultation);
         }
 
         // GET: Consultations/Edit/5
@@ -65,12 +77,12 @@ namespace AssignmentCG.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consultations consultations = db.Consultations.Find(id);
-            if (consultations == null)
+            Consultation consultation = db.Consultations.Find(id);
+            if (consultation == null)
             {
                 return HttpNotFound();
             }
-            return View(consultations);
+            return View(consultation);
         }
 
         // POST: Consultations/Edit/5
@@ -78,15 +90,15 @@ namespace AssignmentCG.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,PatientId")] Consultations consultations)
+        public ActionResult Edit([Bind(Include = "Id,PatientId")] Consultation consultation)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(consultations).State = EntityState.Modified;
+                db.Entry(consultation).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(consultations);
+            return View(consultation);
         }
 
         // GET: Consultations/Delete/5
@@ -96,12 +108,12 @@ namespace AssignmentCG.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Consultations consultations = db.Consultations.Find(id);
-            if (consultations == null)
+            Consultation consultation = db.Consultations.Find(id);
+            if (consultation == null)
             {
                 return HttpNotFound();
             }
-            return View(consultations);
+            return View(consultation);
         }
 
         // POST: Consultations/Delete/5
@@ -109,8 +121,8 @@ namespace AssignmentCG.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Consultations consultations = db.Consultations.Find(id);
-            db.Consultations.Remove(consultations);
+            Consultation consultation = db.Consultations.Find(id);
+            db.Consultations.Remove(consultation);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

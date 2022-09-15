@@ -9,10 +9,8 @@ namespace AssignmentCG.Models
     public class Reviews
     {
         public int Id { get; set; }
-        [Required]
-        public int ConsultationId { get; set; }
-        [Required]
-        public int GPId { get; set; }
+        public Consultation Consultation { get; set; }
+        public ApplicationUser GP { get; set; }
         [Required]
         public double Rate { get; set; }
         [Required]

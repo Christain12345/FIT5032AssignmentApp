@@ -32,7 +32,7 @@ namespace AssignmentCG.Models
 
         public DbSet<AvailableTime> AvailableTimes { get; set; }
         public DbSet<Reviews> Reviews { get; set; }
-        public DbSet<Consultations> Consultations { get; set; }
+        public DbSet<Consultation> Consultations { get; set; }
 
     }
 }

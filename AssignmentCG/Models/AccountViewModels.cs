@@ -64,13 +64,14 @@ namespace AssignmentCG.Models
 
     public class RegisterViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required]//Indicates that this field must be filled in and cannot be blank
+        [EmailAddress] //Indicates that the field entered by the user must comply with the Email Address rule.
         [Display(Name = "Email")]
         public string Email { get; set; }
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        //Indicates that the minimum length of a password is six.
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
@@ -78,6 +79,7 @@ namespace AssignmentCG.Models
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        //Compare confirmPassword with Password and an error will be reported if they are not the same.
         public string ConfirmPassword { get; set; }
     }
 
