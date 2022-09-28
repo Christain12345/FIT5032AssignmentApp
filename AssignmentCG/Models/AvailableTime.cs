@@ -12,8 +12,10 @@ namespace AssignmentCG.Models
         [Required]
         public ApplicationUser GP { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy hh:mm tt}")]
         public DateTime StartTime { get; set; }
         [Required]
+        [DisplayFormat(DataFormatString = "{0:dd MMM yyyy hh:mm tt}")]
         public DateTime EndTime { get; set; }   
 
     }

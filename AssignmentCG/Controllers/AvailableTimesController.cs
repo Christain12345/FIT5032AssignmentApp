@@ -51,18 +51,23 @@ namespace AssignmentCG.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Authorize(Roles = "Admin")]
-        [Authorize(Roles = "General Practitioner")]
         public ActionResult Create([Bind(Include = "Id,StartTime,EndTime")] AvailableTime availableTime)
         {
-            if (ModelState.IsValid)
+            if (User.IsInRole("General Practitioner") || User.IsInRole("Admin"))
             {
-                db.AvailableTimes.Add(availableTime);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                if (ModelState.IsValid)
+                {
+                    db.AvailableTimes.Add(availableTime);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
 
-            return View(availableTime);
+                return View(availableTime);
+            }
+            else
+            { return HttpNotFound(); }
+
+           
         }
 
         // GET: AvailableTimes/Edit/5
