@@ -30,12 +30,23 @@ namespace AssignmentCG
                       "~/Scripts/moment.js",
                       "~/Scripts/bootstrap-datetimepicker.js"
                 ));
+            // google map
+            bundles.Add(new ScriptBundle("~/bundles/map").Include(
+                      "~/Scripts/map.js"));
+
+            // full calendar
+            bundles.Add(new ScriptBundle("~/bundles/fullcalendar").Include(
+                      "~/Scripts/moment.js",
+                      "~/Scripts/fullcalendar.min.js",
+                      "~/Scripts/calendar.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/DataTables/css/dataTables.bootstrap.min.css",
-                      "~/Content/bootstrap-datetimepicker.css"));
+                      "~/Content/bootstrap-datetimepicker.min.css",
+                      "~/Content/fullcalendar.min.css",
+                      "~/Content/rate-star.css"));
         }
     }
 }

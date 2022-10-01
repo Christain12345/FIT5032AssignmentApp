@@ -54,15 +54,15 @@ namespace AssignmentCG
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "898582324885571",
+               appSecret: "1f1b9e134e58b7ecf0c64b4d7ac19654");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "671436384588-feeatebc0nqa7u7pu8virrveqcb201ni.apps.googleusercontent.com",
+                ClientSecret = "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"
+            });
         }
     }
 }

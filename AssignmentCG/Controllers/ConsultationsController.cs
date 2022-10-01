@@ -22,11 +22,15 @@ namespace AssignmentCG.Controllers
             if (User.IsInRole("Admin"))
             { return View(db.Consultations.ToList()); }
             else if (User.IsInRole("General Practitioner"))
-            { return View(db.Consultations.Where(c => c.AvailableTime.GP.Id == User.Identity.GetUserId()).ToList()); }
+            { return View(db.Consultations.Select(c => c.AvailableTime.GP.Id == User.Identity.GetUserId()).ToList()); }
             else if (User.IsInRole("Patient"))
-            { return View(db.Consultations.Where(c => c.Patient.Id == User.Identity.GetUserId()).ToList()); }
+            {
+                //System.Console.Write("12345", db.Consultations.ToList().Where(c => c.Patient.Id == User.Identity.GetUserId()));
+                return View(db.Consultations.ToList().Where(c => c.Patient.Id == User.Identity.GetUserId()));
+            }
             else
-            { return View(new List<Consultation>()); }
+            { return View(new List<Consultation>()); 
+            }
             
         }
 

@@ -16,6 +16,9 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.GP.Email)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.StartTime)
             </th>
             <th>
@@ -29,21 +32,30 @@
         {
             <tr>
                 <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
                     @Html.DisplayFor(modelItem => item.StartTime)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EndTime)
                 </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-                </td>
+                @if (User.IsInRole("General Practitioner") || User.IsInRole("Admin"))
+                {
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                }
             </tr>
         }
     </tbody>
     <tfoot>
         <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.GP.Email)
+            </th>
             <th>
                 @Html.DisplayNameFor(model => model.StartTime)
             </th>
@@ -54,7 +66,10 @@
         </tr>
     </tfoot>
 </table>
-
+@*@if (User.IsInRole("Patient"))
+{
+    <a href = "~/Views/Consultations/Create.cshtml" title="book Consultation" >book</a>
+}*@
 @section Scripts {
     @Scripts.Render("~/bundles/datatables")
     <script>

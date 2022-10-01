@@ -156,14 +156,14 @@ namespace AssignmentCG.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
-                    var role = new IdentityRole("General Practitioner");
-                    var roleresult = roleManager.Create(role);
-                    await UserManager.AddToRoleAsync(user.Id, "General Practitioner");
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
-
-                    //await UserManager.AddToRoleAsync(user.Id, "Patient");
+                    //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new ApplicationDbContext()));
+                    //var role = new IdentityRole("General Practitioner");
+                    //var roleresult = roleManager.Create(role);
+                    //await UserManager.AddToRoleAsync(user.Id, "General Practitioner");
                     //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
+                    await UserManager.AddToRoleAsync(user.Id, "Patient");
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
 
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
@@ -379,6 +379,7 @@ namespace AssignmentCG.Controllers
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
+                    await UserManager.AddToRoleAsync(user.Id, "Patient");
                     result = await UserManager.AddLoginAsync(user.Id, info.Login);
                     if (result.Succeeded)
                     {
