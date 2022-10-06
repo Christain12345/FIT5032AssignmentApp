@@ -55,6 +55,9 @@ namespace AssignmentCG.Controllers
         {
             if (User.IsInRole("General Practitioner") || User.IsInRole("Admin"))
             {
+                availableTime.GP = db.Users.FirstOrDefault(u => u.UserName == User.Identity.Name);
+                ModelState.Clear();
+                TryValidateModel(availableTime);
                 if (ModelState.IsValid)
                 {
                     db.AvailableTimes.Add(availableTime);
